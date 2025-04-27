@@ -1,4 +1,4 @@
-
+set -x
   # 128 Nodes
   # MODEL=DeepSeek-V3 PP=16 VPP=1 TP=1 EP=64 RUN_TIME=04:00:00 NNODES=128 GBS=8192 bash sbatch_benchmarking.sh --recompute-granularity selective --recompute-modules mla_up_proj layernorm moe
   # MODEL=DeepSeek-V3 PP=16 VPP=1 TP=2 EP=64 NNODES=128 GBS=8192 RUN_TIME=04:00:00 bash sbatch_benchmarking.sh --recompute-granularity selective --recompute-modules mla_up_proj layernorm --moe-track-imbalance-rate
@@ -14,14 +14,11 @@ export TOKENIZERS_PARALLELISM=false
 export VESCALE_SINGLE_DEVICE_RAND=0
 export TF_CPP_MIN_LOG_LEVEL=2
 
-NNODES=${NNODES:=$ARNOLD_WORKER_NUM}
-NPROC_PER_NODE=${NPROC_PER_NODE:=$ARNOLD_WORKER_GPU}
-NPROC_PER_NODE=${NPROC_PER_NODE:=$ARNOLD_WORKER_GPU_PER_NODE}
-NODE_RANK=${NODE_RANK:=$ARNOLD_ID}
-MASTER_ADDR=${MASTER_ADDR:=$ARNOLD_WORKER_0_HOST}
-MASTER_ADDR=${MASTER_ADDR:=$ARNOLD_EXECUTOR_0_HOST}
-MASTER_PORT=${MASTER_PORT:=$(echo "$ARNOLD_WORKER_0_PORT" | cut -d "," -f 1)}
-MASTER_PORT=${MASTER_PORT:=$(echo "$ARNOLD_EXECUTOR_0_PORT" | cut -d "," -f 1)}
+MASTER_ADDR=${ARNOLD_WORKER_0_HOST}
+MASTER_PORT=(${ARNOLD_WORKER_0_PORT//,/ })
+NPROC_PER_NODE=${ARNOLD_WORKER_GPU}
+NNODES=${ARNOLD_WORKER_NUM}
+NODE_RANK=${ARNOLD_ID}
 
 
 
@@ -178,8 +175,8 @@ MODEL_ARGS=(
 
   --bf16
   --load /mnt/hdfs/xya/mega_model/dpsk-671b-bf16
-  --save /mnt/hdfs/xya/mega_model/disk_ckpt_dpsk_671b_bf16
-  --ckpt-convert-save /path/to/save/distributed/checkpoint
+  #--save /mnt/hdfs/xya/mega_model/disk_ckpt_dpsk_671b_bf16
+  --ckpt-convert-save /mnt/hdfs/xya/mega_model/disk_ckpt_dpsk_671b_bf16
   --ckpt-convert-format torch_dist
 )
 
