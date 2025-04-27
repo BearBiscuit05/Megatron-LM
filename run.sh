@@ -36,7 +36,7 @@ MODEL_ARGS=(
   # Distributed args
   --distributed-timeout-minutes 60
   --tensor-model-parallel-size 1
-  --pipeline-model-parallel-size 8
+  --pipeline-model-parallel-size 16
   --decoder-first-pipeline-num-layers 8
   --decoder-last-pipeline-num-layers 5
   --expert-model-parallel-size 8
