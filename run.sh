@@ -59,7 +59,7 @@ MODEL_ARGS=(
   --no-rope-fusion
   --cross-entropy-loss-fusion
   --cross-entropy-fusion-impl te # TODO This is an EA feature, only available in te 2.2
-  --mla-yarn-rope-fusion # TODO This is an EA feature
+  #--mla-yarn-rope-fusion # TODO This is an EA feature
   --disable-bf16-reduced-precision-matmul
   --recompute-granularity selective
   --recompute-modules mla_up_proj layernorm
@@ -116,7 +116,7 @@ MODEL_ARGS=(
 
   # Add MoE args
   --num-experts 256
-  --moe-layer-freq ([0]*3+[1]*58)
+  --moe-layer-freq "([0]*3+[1]*58)"
   --moe-ffn-hidden-size 2048
   --moe-shared-expert-intermediate-size 2048
   --moe-router-load-balancing-type seq_aux_loss
@@ -134,8 +134,8 @@ MODEL_ARGS=(
   --moe-router-bias-update-rate 1e-3
   --moe-router-dtype fp32
   --moe-permute-fusion
-  --moe-track-imbalance-rate 
-  --moe-router-force-load-balancing
+  #--moe-track-imbalance-rate 
+  #--moe-router-force-load-balancing
   # Add MLA args
   --q-lora-rank 1536
   --kv-lora-rank 512
