@@ -1,11 +1,4 @@
 
-export CUDA_DEVICE_MAX_CONNECTIONS=1
-export TORCH_NCCL_AVOID_RECORD_STREAMS=1
-export NVTE_ALLOW_NONDETERMINISTIC_ALGO=1
-export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
-export NCCL_NVLS_ENABLE=0
-export NVTE_FUSED_ATTN=1
-
   # 128 Nodes
   # MODEL=DeepSeek-V3 PP=16 VPP=1 TP=1 EP=64 RUN_TIME=04:00:00 NNODES=128 GBS=8192 bash sbatch_benchmarking.sh --recompute-granularity selective --recompute-modules mla_up_proj layernorm moe
   # MODEL=DeepSeek-V3 PP=16 VPP=1 TP=2 EP=64 NNODES=128 GBS=8192 RUN_TIME=04:00:00 bash sbatch_benchmarking.sh --recompute-granularity selective --recompute-modules mla_up_proj layernorm --moe-track-imbalance-rate
