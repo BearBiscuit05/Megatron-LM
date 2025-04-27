@@ -37,8 +37,8 @@ MODEL_ARGS=(
   --distributed-timeout-minutes 60
   --tensor-model-parallel-size 1
   --pipeline-model-parallel-size 16
-  --decoder-first-pipeline-num-layers 8
-  --decoder-last-pipeline-num-layers 5
+  --decoder-first-pipeline-num-layers 9
+  --decoder-last-pipeline-num-layers 10
   --expert-model-parallel-size 8
   --context-parallel-size 1
   --expert-tensor-parallel-size 1
@@ -122,7 +122,6 @@ MODEL_ARGS=(
   --moe-router-load-balancing-type seq_aux_loss
   --moe-router-topk 8
   --moe-token-dispatcher-type flex
-  --moe-enable-deepep
   --moe-router-pre-softmax
   --moe-grouped-gemm
   --moe-aux-loss-coeff 1e-4
@@ -169,6 +168,7 @@ MODEL_ARGS=(
   --log-throughput
   --log-interval 1
   --logging-level 40
+  --moe-enable-deepep
 #   --tensorboard-dir ${OUTPUT_PATH}/tensorboard
 #   --wandb-project ${WANDB_PROJECT}
 #   --wandb-exp-name DeepSeek-V3-TP${TP}PP${PP}EP${EP}CP${CP}VPP${VPP}-MBS${MBS}GBS${GBS}-${COMMENT}
