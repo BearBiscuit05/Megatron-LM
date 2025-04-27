@@ -175,7 +175,7 @@ MODEL_ARGS=(
 
   --bf16
   --load /mnt/hdfs/xya/mega_model/dpsk-671b-bf16
-  #--save /mnt/hdfs/xya/mega_model/disk_ckpt_dpsk_671b_bf16
+  --save /mnt/hdfs/xya/mega_model/save_disk_ckpt_dpsk_671b_bf16
   --ckpt-convert-save /mnt/hdfs/xya/mega_model/disk_ckpt_dpsk_671b_bf16
   --ckpt-convert-format torch_dist
 )
