@@ -35,11 +35,11 @@ DISTRIBUTED_ARGS=(
 MODEL_ARGS=(
   # Distributed args
   --distributed-timeout-minutes 60
-  --tensor-model-parallel-size 4
+  --tensor-model-parallel-size 1
   --pipeline-model-parallel-size 8
   --decoder-first-pipeline-num-layers 8
   --decoder-last-pipeline-num-layers 5
-  --expert-model-parallel-size 32
+  --expert-model-parallel-size 8
   --context-parallel-size 1
   --expert-tensor-parallel-size 1
   --use-distributed-optimizer
