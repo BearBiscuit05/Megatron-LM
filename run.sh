@@ -72,10 +72,9 @@ MODEL_ARGS=(
 
   # Data args
   --seq-length 4096
-  --data-cache-path ${WORKSPACE}/data_cache
   --tokenizer-type HuggingFaceTokenizer
   --tokenizer-model deepseek-ai/DeepSeek-V3
-  --data-path ${DATA_PATH}
+  --data-path /mnt/hdfs/xya/data/megatron_train
   --split 99,1,0
   --no-mmap-bin-files
   --no-create-attention-mask-in-dataloader
