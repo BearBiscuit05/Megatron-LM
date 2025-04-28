@@ -178,6 +178,7 @@ MODEL_ARGS=(
   --save /mnt/hdfs/xya/mega_model/save_disk_ckpt_dpsk_671b_bf16
   --ckpt-convert-save /mnt/hdfs/xya/mega_model/disk_ckpt_dpsk_671b_bf16
   --ckpt-convert-format torch_dist
+  --no-save-optim
 )
 
 torchrun ${DISTRIBUTED_ARGS[@]} pretrain_gpt.py \
