@@ -36,11 +36,11 @@ DISTRIBUTED_ARGS=(
 MODEL_ARGS=(
   # Distributed args
   --distributed-timeout-minutes 60
-  --tensor-model-parallel-size 1
-  --pipeline-model-parallel-size 16
+  --tensor-model-parallel-size 4
+  --pipeline-model-parallel-size 1
   # --decoder-first-pipeline-num-layers 9
   # --decoder-last-pipeline-num-layers 10
-  --expert-model-parallel-size 8
+  --expert-model-parallel-size 4
   --context-parallel-size 1
   --expert-tensor-parallel-size 1
   --use-distributed-optimizer
@@ -49,11 +49,11 @@ MODEL_ARGS=(
 
   # Training args
   --use-mcore-models
-  # --sequence-parallel
+  --sequence-parallel
   --use-flash-attn
   --disable-bias-linear
   --micro-batch-size 1
-  --global-batch-size 8192
+  --global-batch-size 8
   --train-samples 585937500
   --exit-duration-in-mins 220
   --no-check-for-nan-in-loss-and-grad
@@ -72,14 +72,14 @@ MODEL_ARGS=(
   --seq-length 4096
   --tokenizer-type HuggingFaceTokenizer
   --tokenizer-model deepseek-ai/DeepSeek-V3
-  --data-path /mnt/hdfs/xya/data/megatron_train
+  --data-path /mnt/hdfs/xya/data/megatron_train/meg-gpt2_text_document
   --split 99,1,0
   --no-mmap-bin-files
   --no-create-attention-mask-in-dataloader
   --num-workers 6
 
   # Add network size args
-  --num-layers 61
+  --num-layers 2
   --hidden-size 7168
   --ffn-hidden-size 18432
   --num-attention-heads 128
@@ -116,8 +116,8 @@ MODEL_ARGS=(
   --adam-beta2 0.95
 
   # Add MoE args
-  --num-experts 256
-  --moe-layer-freq "([0]*3+[1]*58)"
+  --num-experts 32
+  --moe-layer-freq "([0]*1+[1]*1)"
   --moe-ffn-hidden-size 2048
   --moe-shared-expert-intermediate-size 2048
   --moe-router-load-balancing-type seq_aux_loss
@@ -126,7 +126,7 @@ MODEL_ARGS=(
   --moe-router-pre-softmax
   --moe-grouped-gemm
   --moe-aux-loss-coeff 1e-4
-  --moe-router-group-topk 4
+  --moe-router-group-topk 2
   --moe-router-num-groups 8
   --moe-router-topk-scaling-factor 2.5
   --moe-router-score-function sigmoid
@@ -176,8 +176,8 @@ MODEL_ARGS=(
   --bf16
   #--load /mnt/hdfs/xya/mega_model/dpsk-671b-bf16
   #--save /mnt/hdfs/xya/mega_model/save_disk_ckpt_dpsk_671b_bf16
-  --ckpt-convert-save /mnt/hdfs/xya/mega_model/disk_ckpt_dpsk_671b_bf16
-  --ckpt-convert-format torch_dist
+  # --ckpt-convert-save /mnt/hdfs/xya/mega_model/test
+  # --ckpt-convert-format torch_dist
 )
 
 torchrun ${DISTRIBUTED_ARGS[@]} pretrain_gpt.py \
