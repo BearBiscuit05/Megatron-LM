@@ -9,13 +9,13 @@ def main():
     # 获取当前进程的 rank 和 world_size
     rank = dist.get_rank()
     world_size = dist.get_world_size()
-
+    local_rank = os.environ.get('LOCAL_RANK', 0)
     # 打印基本信息
     print(f"Rank {rank}/{world_size} initialized successfully.")
 
     # 简单的 all-reduce 测试
     # 每个进程创建一个张量，内容为其 rank 值
-    tensor = torch.tensor(float(rank)).cuda()  # 如果用 CPU，移除 .cuda()
+    tensor = torch.tensor(float(rank)).to(f"cuda:{local_rank}")  # 如果用 CPU，移除 .cuda()
     print(f"Rank {rank} initial tensor: {tensor.item()}")
 
     # 执行 all-reduce 操作，将所有进程的张量求和
