@@ -121,7 +121,7 @@ MODEL_ARGS=(
   --moe-shared-expert-intermediate-size 2048
   --moe-router-load-balancing-type seq_aux_loss
   --moe-router-topk 8
-  --moe-token-dispatcher-type flex
+  --moe-token-dispatcher-type alltoall
   --moe-router-pre-softmax
   --moe-grouped-gemm
   --moe-aux-loss-coeff 1e-4
@@ -168,7 +168,6 @@ MODEL_ARGS=(
   --log-throughput
   --log-interval 1
   --logging-level 40
-  --moe-enable-deepep
 #   --tensorboard-dir ${OUTPUT_PATH}/tensorboard
 #   --wandb-project ${WANDB_PROJECT}
 #   --wandb-exp-name DeepSeek-V3-TP${TP}PP${PP}EP${EP}CP${CP}VPP${VPP}-MBS${MBS}GBS${GBS}-${COMMENT}
