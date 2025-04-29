@@ -38,22 +38,20 @@ MODEL_ARGS=(
   --distributed-timeout-minutes 60
   --tensor-model-parallel-size 1
   --pipeline-model-parallel-size 16
-  --decoder-first-pipeline-num-layers 9
-  --decoder-last-pipeline-num-layers 10
+  --decoder-first-pipeline-num-layers 4
+  --decoder-last-pipeline-num-layers 1
   --expert-model-parallel-size 16
   --context-parallel-size 1
   --expert-tensor-parallel-size 1
   --use-distributed-optimizer
-  --overlap-grad-reduce
-  --overlap-param-gather
 
   # Training args
   --use-mcore-models
-  --sequence-parallel
+  # --sequence-parallel
   --use-flash-attn
   --disable-bias-linear
   --micro-batch-size 1
-  --global-batch-size 8192
+  --global-batch-size 1536
   --train-samples 585937500
   --exit-duration-in-mins 220
   --no-check-for-nan-in-loss-and-grad
