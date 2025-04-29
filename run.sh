@@ -40,7 +40,7 @@ MODEL_ARGS=(
   --pipeline-model-parallel-size 16
   --decoder-first-pipeline-num-layers 9
   --decoder-last-pipeline-num-layers 10
-  --expert-model-parallel-size 8
+  --expert-model-parallel-size 16
   --context-parallel-size 1
   --expert-tensor-parallel-size 1
   --use-distributed-optimizer
@@ -174,7 +174,7 @@ MODEL_ARGS=(
 #   --wandb-exp-name DeepSeek-V3-TP${TP}PP${PP}EP${EP}CP${CP}VPP${VPP}-MBS${MBS}GBS${GBS}-${COMMENT}
 
   --bf16
-  --load /mnt/hdfs/xya/mega_model/dpsk-671b-bf16
+  --load /mnt/hdfs/xya/mega_model/dpsk-671b-bf16-16pp-16ep
   --save /mnt/hdfs/xya/mega_model/save_disk_ckpt_dpsk_671b_bf16
   --ckpt-convert-save /mnt/hdfs/xya/mega_model/disk_ckpt_dpsk_671b_bf16
   --ckpt-convert-format torch_dist
